@@ -1,12 +1,11 @@
 package com.masterj723.temperature_converter.Util;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 import static java.util.Locale.US;
 
 public class InputUtil {
 
-    public static String getInput() {
+    public  String getInput() {
         String stringCelsius = "";
         boolean loop = true;
         while (loop) {
@@ -22,4 +21,7 @@ public class InputUtil {
         }
         return stringCelsius;
     }
+
+
+
 }
