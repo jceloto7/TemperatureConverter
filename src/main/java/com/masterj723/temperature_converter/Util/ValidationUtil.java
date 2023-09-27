@@ -2,24 +2,28 @@ package com.masterj723.temperature_converter.Util;
 
 import org.apache.commons.lang3.math.NumberUtils;
 public class ValidationUtil {
+    private final InputUtil inputUtil;
 
-    public double validationDouble (String stringCelsius ){
+    public ValidationUtil(InputUtil inputUtil){
+        this.inputUtil = inputUtil;
+    }
+
+    public double validationDouble(String stringCelsius) {
         boolean validation;
-        boolean loop =true;
+        boolean loop = true;
         double doubleCelsius = 0;
-        InputUtil inputUtil = new InputUtil();
 
         validation = NumberUtils.isParsable(stringCelsius);
-        while (loop){
-            if(!validation){
+        while (loop) {
+            if (!validation) {
                 System.out.println("""
-                Invalid temperature.Please just type numbers.
-                If you want to use decimal cases, please use '.'.""");
+                        Invalid temperature.Please just type numbers.
+                        If you want to use decimal cases, please use '.'.""");
                 stringCelsius = inputUtil.getInput();
                 validation = NumberUtils.isParsable(stringCelsius);
 
-            } else{
-                loop= false;
+            } else {
+                loop = false;
                 doubleCelsius = Double.parseDouble(stringCelsius);
             }
         }
@@ -27,50 +31,17 @@ public class ValidationUtil {
 
     }
 
-    public int validationInt(String stringOption){
-        ValidationUtil validationUtil = new ValidationUtil();
-        InputUtil inputUtil = new InputUtil();
-        double checkDouble;
-        int intOption;
+    public char validationChar(String stringOption) {
+        char[] charOption = stringOption.toCharArray();
 
-        checkDouble= validationUtil.validationIntAux(stringOption);
-
-        while(checkDouble != 1 && checkDouble !=2){
-                System.out.println("Invalid option.Please just type 1 or 2:");
-                stringOption = inputUtil.getInput();
-                checkDouble = validationUtil.validationIntAux(stringOption);
-            }
-
-        intOption = (int)checkDouble;
-        return intOption;
-
-    }
-
-    public double validationIntAux (String stringOption ){
-        boolean validation;
-        boolean loop =true;
-        double doubleOption = 0;
-        InputUtil inputUtil = new InputUtil();
-
-        validation = NumberUtils.isParsable(stringOption);
-        while (loop){
-            if(!validation){
-                System.out.println("Invalid option.Please just type 1 or 2:");
-                stringOption = inputUtil.getInput();
-                validation = NumberUtils.isParsable(stringOption);
-
-            } else{
-                loop= false;
-                doubleOption = Double.parseDouble(stringOption);
-            }
+        while (charOption.length > 1 || charOption[0] != '1' && charOption[0] != '2') {
+            System.out.println("Invalid option.Please just type 1 or 2:");
+            stringOption = inputUtil.getInput();
+            charOption = stringOption.toCharArray();
         }
-        return doubleOption;
+        return charOption[0];
 
     }
-
-
-
-
-    }
+}
 
 

@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "org.masterj723"
-version = "0.1.1-SNAPSHOT"
+version = "1.0.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
